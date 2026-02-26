@@ -1,0 +1,22 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Home from "./pages/Home"
+import BookDetail from "./pages/BooksDetail"
+import Cart from "./pages/Cart"
+import Navbar from "./components/Navbar"
+
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="min-h-screen bg-gray-900 text-white">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/book/:id" element={<BookDetail />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  )
+}
+
+export default App
