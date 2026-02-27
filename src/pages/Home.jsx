@@ -3,7 +3,7 @@ import LibroCard from "../components/LibroCard"
 
 const Home = () => {
   return (
-    <div className="min-h-screen max-w-6xl mx-auto bg-gray-900 p-8">
+    <div className="min-h-screen max-w-6xl mx-auto bg-gray-700 p-8">
       <h1 className="text-3xl font-bold mb-8 ">
         Nuestra colección
       </h1>
