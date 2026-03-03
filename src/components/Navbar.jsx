@@ -54,18 +54,18 @@ const Navbar = () => {
               }`}
           >
             <ul className="flex flex-col gap-2">
-              <button className="hover:bg-gray-600 p-2 rounded cursor-pointer">
+              <Link to="/category/Fantasía" className="hover:bg-gray-600 p-2 rounded cursor-pointer">
                 Fantasía
-              </button>
-              <button className="hover:bg-gray-600 p-2 rounded cursor-pointer">
-                Ciencia ficción
-              </button>
-              <button className="hover:bg-gray-600 p-2 rounded cursor-pointer">
-                Distopía
-              </button>
-              <button className="hover:bg-gray-600 p-2 rounded cursor-pointer">
+              </Link>
+              <Link to="/category/Ciencia Ficción" className="hover:bg-gray-600 p-2 rounded cursor-pointer">
+                Ciencia Ficción
+              </Link>
+              <Link to="/category/Distópico" className="hover:bg-gray-600 p-2 rounded cursor-pointer">
+                Distópico
+              </Link>
+              <Link to="/category/Clásicos" className="hover:bg-gray-600 p-2 rounded cursor-pointer">
                 Clásicos
-              </button>
+              </Link>
             </ul>
           </div>
         </div>

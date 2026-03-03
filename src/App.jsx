@@ -3,6 +3,7 @@ import Home from "./pages/Home"
 import BookDetail from "./pages/BooksDetail"
 import Cart from "./pages/Cart"
 import Navbar from "./components/Navbar"
+import Category from "./pages/Category"
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/book/:id" element={<BookDetail />} />
+          <Route path="/category/:id" element={<Category />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </div>

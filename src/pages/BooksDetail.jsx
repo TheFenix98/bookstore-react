@@ -17,7 +17,7 @@ const BookDetail = () => {
     <div className="p-8 text-white">
       <h1 className="text-3xl font-bold">Detalle del libro</h1>
       <div className="flex mt-6 gap-0 bg-gray-800 p-6 rounded-lg shadow-lg">
-        <div className="w-1/3">
+        <div className="w-1/3 items-center flex flex-col">
           <h2 className="text-2xl font-semibold mt-4">{libro.titulo}</h2>
           <img className="w-1/2 mb-4" src={libro.imagen} alt={libro.titulo} />
           <p className="text-gray-400 text-s">{libro.autor}</p>
@@ -48,6 +48,14 @@ const BookDetail = () => {
           <tr className="border border-gray-600">
             <td className="p-3 bg-gray-600 font-semibold">Descripción</td>
             <td className="bg-gray-600 p-3">{libro.descripcion}</td>
+          </tr>
+          <tr className="border border-gray-600">
+            <td className="p-3 bg-gray-800 font-semibold">Editorial</td>
+            <td className="p-3">{libro.editorial}</td>
+          </tr>
+          <tr className="border border-gray-600">
+            <td className="p-3 bg-gray-600 font-semibold">ISBN</td>
+            <td className="bg-gray-600 p-3">{libro.isbn}</td>
           </tr>
         </tbody>
       </table>
