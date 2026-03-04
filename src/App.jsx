@@ -4,13 +4,16 @@ import BookDetail from "./pages/BooksDetail"
 import Cart from "./pages/Cart"
 import Navbar from "./components/Navbar"
 import Category from "./pages/Category"
+import { CartProvider } from "./context/CartContext"
+
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-gray-900 text-white">
-        <Navbar />
-        <Routes>
+    <CartProvider>
+      <BrowserRouter>
+        <div className="min-h-screen bg-gray-900 text-white">
+          <Navbar />
+          <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/book/:id" element={<BookDetail />} />
           <Route path="/category/:id" element={<Category />} />
@@ -18,6 +21,7 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+    </CartProvider>
   )
 }
 

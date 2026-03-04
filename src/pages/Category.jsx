@@ -1,10 +1,13 @@
 import { useParams } from "react-router-dom"
 import { libros } from "../data/books"
 import { Link } from "react-router-dom"
+import { useContext } from "react"
+import { CartContext } from "../context/CartContext"
 
 const Category = () => {
   const { id } = useParams()
   const librosCategoria = libros.filter((libro) => libro.categoria === id)
+  const { addToCart } = useContext(CartContext)
 
   if (librosCategoria.length === 0) {
     return (
@@ -28,7 +31,7 @@ const Category = () => {
               <p className="text-blue-400 font-bold text-xl mt-2">${libro.precio.toLocaleString()}</p>
               <div className="flex flex-col w-1/2 ">
                 <button className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Comprar Ahora</button>
-                <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Agregar al Carrito</button>
+                <button onClick={() => addToCart(libro)} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Agregar al Carrito</button>
               </div>
             </div>
           ))}

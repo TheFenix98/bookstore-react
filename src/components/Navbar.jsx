@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom"
+import { GiShoppingCart } from "react-icons/gi";
 import { useState, useRef, useEffect } from "react"
+import { useContext } from "react"
+import { CartContext } from "../context/CartContext"
+
 
 const Navbar = () => {
   const [abierto, setAbierto] = useState(false)
   const dropdownRef = useRef(null)
+  const { cartItems } = useContext(CartContext)
 
   useEffect(() => {
     const manejarClickFuera = (e) => {
@@ -23,7 +28,7 @@ const Navbar = () => {
   }, [])
 
   return (
-    <nav className="bg-gray-800 px-8 py-4 flex justify-between items-center relative">
+    <nav className="bg-gray-800 px-8 py-4 flex justify-between items-center sticky top-0 z-50">
       <Link to="/" className="text-2xl font-bold text-blue-400">
         Alejandría
       </Link>
@@ -69,10 +74,14 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
-
-        <Link to="/cart" className="hover:text-blue-400 transition">
-          Carrito
-        </Link>
+        <div className="relative">
+          {cartItems.length > 0 && (
+            <span className="absolute -top-2 -right-3 bg-red-500 text-xs px-2 py-0.5 rounded-full ">{cartItems.length}</span>
+          )}
+          <Link to="/cart" className="hover:text-blue-400 transition text-xl">
+            <GiShoppingCart size={30}/> 
+          </Link>
+        </div>
       </div>
     </nav>
   )
