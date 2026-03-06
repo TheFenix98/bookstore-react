@@ -4,7 +4,9 @@ import BookDetail from "./pages/BooksDetail"
 import Cart from "./pages/Cart"
 import Navbar from "./components/Navbar"
 import Category from "./pages/Category"
+import Busqueda from "./pages/Busqueda"
 import { CartProvider } from "./context/CartContext"
+
 
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/book/:id" element={<BookDetail />} />
           <Route path="/category/:id" element={<Category />} />
+          <Route path="/busqueda/:query" element={<Busqueda />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </div>

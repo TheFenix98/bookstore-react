@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import { GiShoppingCart } from "react-icons/gi";
+import { FaSearch } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react"
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
 
@@ -9,6 +11,8 @@ const Navbar = () => {
   const [abierto, setAbierto] = useState(false)
   const dropdownRef = useRef(null)
   const { cartItems } = useContext(CartContext)
+  const [busqueda, setBusqueda] = useState("")
+  const navigate = useNavigate()
 
   useEffect(() => {
     const manejarClickFuera = (e) => {
@@ -32,6 +36,29 @@ const Navbar = () => {
       <Link to="/" className="text-2xl font-bold text-blue-400">
         Alejandría
       </Link>
+
+      <div className="flex items-center  ">
+        <form className="flex items-center"
+          onSubmit={(e) => {
+            e.preventDefault()
+            navigate(`/busqueda/${busqueda}`)
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Buscar..."
+            className="px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-700 text-white"
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="ml-2 px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 flex items-center gap-2"
+          >
+            <FaSearch />
+          </button>
+        </form>
+      </div>
 
       <div className="flex items-center gap-6">
         <div className="relative" ref={dropdownRef}>
