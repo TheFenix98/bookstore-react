@@ -3,11 +3,17 @@ import { CartContext } from "../context/CartContext";
 import { FaTrashAlt } from "react-icons/fa";
 
 const Cart = () => {
-  const { cartItems, removeFromCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
+  const { cartItems, removeFromCart, increaseQuantity, decreaseQuantity, clearCart } = useContext(CartContext);
 
   return (
-    < div className="p-8 text-white">
+    < div className="p-8 text-white ">
+      <div className="flex justify-between items-center mb-6">
       <h1 className="text-3xl font-bold mb-6">Carrito de Compras</h1>
+      <button onClick={clearCart} className="mb-6 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+        <FaTrashAlt className="inline-block mr-2" />
+        Vaciar Carrito
+      </button>
+      </div>
 
       {cartItems.length === 0 ? (
         <div className="flex flex-col items-center justify-center gap-4 bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -68,7 +74,8 @@ const Cart = () => {
             <div className="flex justify-between  items-center bg-gray-800 p-4 rounded-lg shadow-lg mt-6">
             <h2 className="text-2xl font-semibold">Total =</h2>
             <p className="text-blue-400 font-bold text-2xl ">
-              ${cartItems.reduce((total, item) => total + item.precio * (item.quantity || 1), 0).toLocaleString()}
+              ${cartItems.reduce((total, item) => 
+                total + item.precio * (item.quantity || 1), 0).toLocaleString()}
             </p>
           </div>
           <div className="flex justify-center mt-6">
