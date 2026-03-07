@@ -8,7 +8,8 @@ import { CartContext } from "../context/CartContext"
 
 
 const Navbar = () => {
-  const [abierto, setAbierto] = useState(false)
+  const [dropdownDesktop, setDropdownDesktop] = useState(false)
+  const [dropdownMobile, setDropdownMobile] = useState(false)
   const dropdownRef = useRef(null)
   const { cartItems } = useContext(CartContext)
   const [busqueda, setBusqueda] = useState("")
@@ -20,7 +21,7 @@ const Navbar = () => {
         dropdownRef.current &&
         !dropdownRef.current.contains(e.target)
       ) {
-        setAbierto(false)
+        setDropdownDesktop(false)
       }
     }
 
@@ -31,13 +32,16 @@ const Navbar = () => {
     }
   }, [])
 
+  const [menuAbierto, setMenuAbierto] = useState(false)
+
   return (
-    <nav className="bg-gray-800 px-8 py-4 flex justify-between items-center sticky top-0 z-50">
-      <Link to="/" className="text-2xl font-bold text-blue-400">
+    <nav className="bg-gray-800 px-4 md:px-8 py-4 flex justify-between items-center sticky top-0 z-50">
+      <Link to="/" className="text-xl md:text-2xl font-bold text-blue-400">
         Alejandría
       </Link>
 
-      <div className="flex items-center  ">
+      {/* Search - Hidden on mobile */}
+      <div className="hidden md:flex items-center">
         <form className="flex items-center"
           onSubmit={(e) => {
             e.preventDefault()
@@ -47,7 +51,7 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Buscar..."
-            className="px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-700 text-white"
+            className="px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-700 text-white text-sm"
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
           />
@@ -60,56 +64,126 @@ const Navbar = () => {
         </form>
       </div>
 
-      <div className="flex items-center gap-6">
+      {/* Desktop Menu */}
+      <div className="hidden md:flex items-center gap-6">
+        {/* Categories Dropdown */}
         <div className="relative" ref={dropdownRef}>
           <button
-            onClick={() => setAbierto(!abierto)}
-            className="flex items-center gap-2 hover:text-blue-400 transition"
+            onClick={() => setDropdownDesktop(!dropdownDesktop)}
+            className="flex items-center gap-2 hover:text-blue-400 transition text-sm"
           >
             Categorías
-            <span
-              className={`transition-transform duration-300 ${
-                abierto ? "rotate-180" : ""
-              }`}
-            >
+            <span className={`transition-transform duration-300 ${dropdownDesktop ? "rotate-180" : ""}`}>
               ▾
             </span>
           </button>
 
-          <div
-            className={`absolute top-full mt-2 w-48 bg-gray-700 rounded-lg shadow-lg p-2
-              transform transition-all duration-300 origin-top
-              ${
-                abierto
-                  ? "opacity-100 scale-100"
-                  : "opacity-0 scale-95 pointer-events-none"
-              }`}
-          >
+          <div className={`absolute top-full mt-2 w-48 bg-gray-700 rounded-lg shadow-lg p-2
+            transform transition-all duration-300 origin-top
+            ${dropdownDesktop ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}`}>
             <ul className="flex flex-col gap-2">
-              <Link to="/category/Fantasía" className="hover:bg-gray-600 p-2 rounded cursor-pointer">
+              <Link to="/category/Fantasía" className="hover:bg-gray-600 p-2 rounded cursor-pointer text-sm">
                 Fantasía
               </Link>
-              <Link to="/category/Ciencia Ficción" className="hover:bg-gray-600 p-2 rounded cursor-pointer">
+              <Link to="/category/Ciencia Ficción" className="hover:bg-gray-600 p-2 rounded cursor-pointer text-sm">
                 Ciencia Ficción
               </Link>
-              <Link to="/category/Distópico" className="hover:bg-gray-600 p-2 rounded cursor-pointer">
+              <Link to="/category/Distópico" className="hover:bg-gray-600 p-2 rounded cursor-pointer text-sm">
                 Distópico
               </Link>
-              <Link to="/category/Clásicos" className="hover:bg-gray-600 p-2 rounded cursor-pointer">
+              <Link to="/category/Clásicos" className="hover:bg-gray-600 p-2 rounded cursor-pointer text-sm">
                 Clásicos
               </Link>
             </ul>
           </div>
         </div>
+
+        {/* Cart */}
         <div className="relative">
           {cartItems.length > 0 && (
-            <span className="absolute -top-2 -right-3 bg-red-500 text-xs px-2 py-0.5 rounded-full ">{cartItems.length}</span>
+            <span className="absolute -top-2 -right-3 bg-red-500 text-xs px-2 py-0.5 rounded-full">
+              {cartItems.length}
+            </span>
           )}
-          <Link to="/cart" className="hover:text-blue-400 transition text-xl">
-            <GiShoppingCart size={30}/> 
+          <Link to="/cart" className="hover:text-blue-400 transition">
+            <GiShoppingCart size={24} />
           </Link>
         </div>
       </div>
+
+      {/* Mobile Menu Button */}
+      <div className="md:hidden flex items-center gap-4">
+        <div className="relative">
+          {cartItems.length > 0 && (
+            <span className="absolute -top-2 -right-3 bg-red-500 text-xs px-2 py-0.5 rounded-full">
+              {cartItems.length}
+            </span>
+          )}
+          <Link to="/cart" className="hover:text-blue-400 transition">
+            <GiShoppingCart size={24} />
+          </Link>
+        </div>
+        <button
+          onClick={() => setMenuAbierto(!menuAbierto)}
+          className="text-2xl hover:text-blue-400 transition"
+        >
+          ☰
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {menuAbierto && (
+        <div className="absolute top-full left-0 right-0 bg-gray-800 md:hidden border-t border-gray-700">
+          <div className="px-4 py-4 space-y-4">
+            {/* Mobile Search */}
+            <form className="flex items-center gap-2"
+              onSubmit={(e) => {
+                e.preventDefault()
+                navigate(`/busqueda/${busqueda}`)
+                setMenuAbierto(false)
+              }}
+            >
+              <input
+                type="text"
+                placeholder="Buscar..."
+                className="flex-1 px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-gray-700 text-white text-sm"
+                value={busqueda}
+                onChange={(e) => setBusqueda(e.target.value)}
+              />
+              <button type="submit" className="p-2 bg-yellow-500 hover:bg-yellow-600 rounded">
+                <FaSearch />
+              </button>
+            </form>
+
+            {/* Mobile Categories */}
+            <div>
+              <button
+                onClick={() => setDropdownMobile(!dropdownMobile)}
+                className="w-full text-left flex items-center justify-between hover:text-blue-400 font-medium py-2"
+              >
+                Categorías
+                <span className={`transition-transform ${dropdownMobile ? "rotate-180" : ""}`}>▾</span>
+              </button>
+              {dropdownMobile && (
+                <ul className="pl-4 space-y-2">
+                  <Link to="/category/Fantasía" className="block hover:text-blue-400 py-2 text-sm" onClick={() => setMenuAbierto(false)}>
+                    Fantasía
+                  </Link>
+                  <Link to="/category/Ciencia Ficción" className="block hover:text-blue-400 py-2 text-sm" onClick={() => setMenuAbierto(false)}>
+                    Ciencia Ficción
+                  </Link>
+                  <Link to="/category/Distópico" className="block hover:text-blue-400 py-2 text-sm" onClick={() => setMenuAbierto(false)}>
+                    Distópico
+                  </Link>
+                  <Link to="/category/Clásicos" className="block hover:text-blue-400 py-2 text-sm" onClick={() => setMenuAbierto(false)}>
+                    Clásicos
+                  </Link>
+                </ul>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }
