@@ -12,7 +12,8 @@ export const libros = [
     isbn: "978-8498382778",
     descripcion: "El primer libro de la saga de Harry Potter que sigue al joven mago descubriendo su verdadera identidad.",
     sinopsis: "Harry Potter, un huérfano que vive con sus tíos, descubre en su undécimo cumpleaños que es un mago. Invitado a asistir a Hogwarts, una escuela de magia, Harry hace amigos y descubre la verdadera historia de sus padres. Allí deberá enfrentar misterios, peligros y la amenaza del regreso de Lord Voldemort.",
-    calificacion: 4.8
+    calificacion: 4.8,
+    stock: 15
   },
   {
     id: 2,
@@ -27,7 +28,8 @@ export const libros = [
     isbn: "978-8445007267",
     descripcion: "Una épica aventura en la tierra media contra las fuerzas del mal.",
     sinopsis: "Frodo Bolsón hereda un anillo mágico de su tío Bilbo. El mago Gandalf revela que es el Anillo Único, un arma de poder absoluto creada por el Señor Oscuro. Para salvar la Tierra Media, Frodo debe destruirlo en las profundidades del Monte del Destino, emprende un viaje peligroso acompañado por la Comunidad del Anillo.",
-    calificacion: 4.9
+    calificacion: 4.9,
+    stock: 8
   },
   {
     id: 3,
@@ -42,7 +44,8 @@ export const libros = [
     isbn: "978-8423339779",
     descripcion: "Una distopía sobre un régimen totalitario que controla la realidad.",
     sinopsis: "En un futuro totalitario, el Partido controla cada aspecto de la vida humana. Winston Smith, un empleado del Ministerio de la Verdad, comienza a dudar del sistema. Su búsqueda de libertad y verdad lo lleva por un camino peligroso en un mundo donde el amor y la individualidad son delitos.",
-    calificacion: 4.7
+    calificacion: 4.7,
+    stock: 20
   },
   {
     id: 4,
@@ -57,7 +60,8 @@ export const libros = [
     isbn: "978-8477021803",
     descripcion: "Lucha política y conspiraciones en los siete reinos.",
     sinopsis: "En los siete reinos de Westeros, nobles casas compiten por el trono. Mientras luchan por el poder, una amenaza antigua se despierta más allá del Muro. Personajes complejos navegan entre traiciones, alianzas y la búsqueda del poder en un mundo donde nadie está seguro.",
-    calificacion: 4.6
+    calificacion: 4.6,
+    stock: 12
   },
   {
     id: 5,
@@ -72,7 +76,8 @@ export const libros = [
     isbn: "978-8427037465",
     descripcion: "Una joven se levanta contra un régimen opresivo.",
     sinopsis: "Katniss Everdeen es seleccionada para participar en los Juegos del Hambre, una competición mortal televisada. Como tributo de un distrito oprimido, debe luchar por su vida contra otros jóvenes. Su valentía y determinación la convierten en símbolo de una rebelión contra el opresivo gobierno de Panem.",
-    calificacion: 4.5
+    calificacion: 4.5,
+    stock: 18
   },
   {
     id: 6,
@@ -87,7 +92,8 @@ export const libros = [
     isbn: "978-8498382686",
     descripcion: "Épica de ciencia ficción sobre poder, religión y ecología.",
     sinopsis: "En el planeta desértico de Arrakis, el joven Paul Atreides se convierte en líder de una rebelión. Su familia es traicionada y él escapa al desierto, donde se une con los Fremen. Paul descubre posibilidades extraordinarias y enfrenta fuerzas políticas y religiosas en su búsqueda de venganza y redención.",
-    calificacion: 4.8
+    calificacion: 4.8,
+    stock: 10
   },
   {
     id: 7,
@@ -102,7 +108,8 @@ export const libros = [
     isbn: "978-8427030787",
     descripcion: "Una historia de amor y crítica social en la Inglaterra del siglo XIX.",
     sinopsis: "Elizabeth Bennet rechaza los prejuicios sociales y las expectativas de su época. Su encuentro con el arrogante señor Darcy la desafía a reconsiderar sus opiniones. A través de ingenio, humor y romance, Austen critica la sociedad mientras Elizabeth descubre el verdadero carácter más allá de las apariencias.",
-    calificacion: 4.7
+    calificacion: 4.7,
+    stock: 22
   },
   {
     id: 8,
@@ -117,7 +124,8 @@ export const libros = [
     isbn: "978-8498382775",
     descripcion: "Saga familiar en el pueblo mágico de Macondo.",
     sinopsis: "La saga de la familia Buendía se desarrolla a lo largo de cien años en el pueblo mágico y aislado de Macondo. Con ciclos de repetición, amor, soledad y magia literaria, García Márquez teje una narración donde lo fantástico se entrelaza con lo cotidiano, retratando la condición humana en su forma más compleja.",
-    calificacion: 4.8
+    calificacion: 4.8,
+    stock: 14
   },
   {
     id: 9,
@@ -132,7 +140,8 @@ export const libros = [
     isbn: "978-8445007274",
     descripcion: "Un futuro donde los libros son quemados y la cultura es reprimida.",
     sinopsis: "Guy Montag es un bombero cuyo trabajo es quemar libros. En una sociedad obsesionada con la televisión, los libros son considerados peligrosos. Montag comienza a cuestionarse su maldad y se inicia en una rebelión clandestina para preservar el conocimiento y la libertad intelectual.",
-    calificacion: 4.6
+    calificacion: 4.6,
+    stock: 17
   },
   {
     id: 10,
@@ -147,7 +156,8 @@ export const libros = [
     isbn: "978-8433927348",
     descripcion: "Una mujer narra su vida bajo un régimen patriarcal extremo.",
     sinopsis: "Offred es una criada en la república teocrática de Gilead, donde las mujeres son posesiones del Estado. A través de su narrativa íntima, revela la opresión sistémica, la resistencia silenciosa y la búsqueda de humanidad en un régimen que las define solo por su capacidad reproductiva.",
-    calificacion: 4.7
+    calificacion: 4.7,
+    stock: 11
   },
   {
     id: 11,
@@ -162,7 +172,8 @@ export const libros = [
     isbn: "978-8445007281",
     descripcion: "La aventura de Bilbo Bolsón en la tierra media.",
     sinopsis: "Bilbo Bolsón, un hobbit ordinario, es reclutado para una aventura épica. Acompañado por enanos y el mago Gandalf, debe ayudar a recuperar un tesoro guardado por un dragón. Durante su viaje, Bilbo descubre valor dentro de sí mismo y un misterioso anillo que jugará un papel crucial en el futuro de la Tierra Media.",
-    calificacion: 4.8
+    calificacion: 4.8,
+    stock: 16
   },
   {
     id: 12,
@@ -177,6 +188,7 @@ export const libros = [
     isbn: "978-8498382716",
     descripcion: "Una visión del futuro donde se predice el colapso de un imperio galáctico.",
     sinopsis: "Un matemático predice el colapso de un imperio galáctico usando psicohistoria. Para preservar el conocimiento y minimizar la era oscura que seguirá, establece una Fundación en los confines del imperio. La serie sigue cómo esta Fundación influye en el futuro de la civilización durante miles de años.",
-    calificacion: 4.7
+    calificacion: 4.7,
+    stock: 19
   }
 ]

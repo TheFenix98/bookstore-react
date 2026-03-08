@@ -69,6 +69,10 @@ const Navbar = () => {
               setResultadosBusqueda(filtrados);
               setMostrarResultados(true);
             }}
+            onBlur={() => {
+              setTimeout(() => {
+                setMostrarResultados(false);}, 150);
+            }}
           />
           {mostrarResultados && resultadosBusqueda.length > 0 && (
             <div className=" absolute top-full left-0 right-0 bg-gray-700 rounded-lg shadow-lg mt-1 z-10">

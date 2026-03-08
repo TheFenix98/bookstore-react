@@ -2,10 +2,13 @@ import { useParams } from "react-router-dom"
 import { libros } from "../data/books"
 import { Link } from "react-router-dom"
 import LibroCard  from "../components/LibroCard"
+import { useContext } from "react"
+import { CartContext } from "../context/CartContext"
 
 
 const Busqueda = () => {
     const { query } = useParams()
+    const { addToCart } = useContext(CartContext)
     const resultados = libros.filter((libro) =>
         libro.titulo.toLowerCase().includes(query.toLowerCase()) ||
         libro.autor.toLowerCase().includes(query.toLowerCase())
@@ -20,7 +23,9 @@ const Busqueda = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
                 {resultados.map((libro) => (
                     <LibroCard key={libro.id} libro={libro} >
-                        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                        <button
+                        onClick={() => addToCart(libro)}
+                         className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
                             Agregar al Carrito
                         </button>
                         <button className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">

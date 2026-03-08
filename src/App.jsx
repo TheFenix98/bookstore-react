@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar"
 import Category from "./pages/Category"
 import Busqueda from "./pages/Busqueda"
 import { CartProvider } from "./context/CartContext"
+import { Toaster } from "sonner"
 
 
 
@@ -13,6 +14,7 @@ function App() {
   return (
     <CartProvider>
       <BrowserRouter>
+      <Toaster position="bottom-right" richColors  duration={3000}/>
         <div className="min-h-screen bg-gray-900 text-white">
           <Navbar />
           <Routes>

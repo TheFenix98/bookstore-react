@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
-
-
-
 const BookDetail = () => {
   const { id } = useParams();
   const libro = libros.find((libro) => libro.id === parseInt(id));
@@ -25,8 +22,14 @@ const BookDetail = () => {
       <h1 className="text-2xl md:text-3xl font-bold">Detalle del libro</h1>
       <div className="flex flex-col md:flex-row mt-8 gap-6 bg-gray-800 p-4 md:p-6 rounded-lg shadow-lg">
         <div className="w-full md:w-1/3 items-center flex flex-col">
-          <h2 className="text-xl md:text-2xl font-semibold mt-4">{libro.titulo}</h2>
-          <img className="w-1/2 md:w-2/3 mb-4" src={libro.imagen} alt={libro.titulo} />
+          <h2 className="text-xl md:text-2xl font-semibold mt-4">
+            {libro.titulo}
+          </h2>
+          <img
+            className="w-1/2 md:w-2/3 mb-4"
+            src={libro.imagen}
+            alt={libro.titulo}
+          />
           <p className="text-gray-400 text-xs md:text-sm">{libro.autor}</p>
           <p className="text-blue-400 font-bold text-lg md:text-xl mt-2">
             ${libro.precio.toLocaleString()}
@@ -35,7 +38,10 @@ const BookDetail = () => {
             <button className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 text-sm md:text-base">
               Comprar Ahora
             </button>
-            <button onClick={() => addToCart(libro)} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm md:text-base">
+            <button
+              onClick={() => addToCart(libro)}
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm md:text-base"
+            >
               Agregar al Carrito
             </button>
           </div>
@@ -43,7 +49,9 @@ const BookDetail = () => {
         <div className="w-full md:w-2/3">
           <h2 className="text-xl md:text-2xl font-semibold mt-4">Sinopsis</h2>
           <p className="text-gray-400 text-base md:text-lg">{libro.sinopsis}</p>
-          <h2 className="text-xl md:text-2xl font-semibold mt-4">Especificaciones</h2>
+          <h2 className="text-xl md:text-2xl font-semibold mt-4">
+            Especificaciones
+          </h2>
           <table className="w-full mx-auto mt-6 rounded-xl border border-gray-600 text-sm md:text-base">
             <tbody>
               <tr className="border border-gray-600">
@@ -55,15 +63,21 @@ const BookDetail = () => {
                 <td className="bg-gray-600 p-2 md:p-3">{libro.año}</td>
               </tr>
               <tr className="border border-gray-600">
-                <td className="p-2 md:p-3 bg-gray-800 font-semibold">Páginas</td>
+                <td className="p-2 md:p-3 bg-gray-800 font-semibold">
+                  Páginas
+                </td>
                 <td className="p-2 md:p-3">{libro.paginas}</td>
               </tr>
               <tr className="border border-gray-600">
-                <td className="p-2 md:p-3 bg-gray-600 font-semibold">Descripción</td>
+                <td className="p-2 md:p-3 bg-gray-600 font-semibold">
+                  Descripción
+                </td>
                 <td className="bg-gray-600 p-2 md:p-3">{libro.descripcion}</td>
               </tr>
               <tr className="border border-gray-600">
-                <td className="p-2 md:p-3 bg-gray-800 font-semibold">Editorial</td>
+                <td className="p-2 md:p-3 bg-gray-800 font-semibold">
+                  Editorial
+                </td>
                 <td className="p-2 md:p-3">{libro.editorial}</td>
               </tr>
               <tr className="border border-gray-600">
@@ -83,7 +97,8 @@ const BookDetail = () => {
             .filter((l) => l.categoria === libro.categoria && l.id !== libro.id)
             .slice(0, 3)
             .map((libroRelacionado) => (
-              <Link to={`/book/${libroRelacionado.id}`}
+              <Link
+                to={`/book/${libroRelacionado.id}`}
                 key={libroRelacionado.id}
                 className="bg-gray-700 p-3 rounded-lg shadow flex flex-col items-center flex-1 min-w-32 md:w-40"
               >

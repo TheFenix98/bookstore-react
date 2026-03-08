@@ -36,7 +36,7 @@ const Cart = () => {
               </div>
 
               <div className="flex flex-col gap-4 sm:items-end">
-                <div className="flex flex-col items-center bg-gray-800 p-4 rounded-lg">
+                <div className="flex flex-col items-center  p-4 rounded-lg">
                   <p className="text-gray-400 mb-2 text-sm">Cantidad</p>
                   <div className="flex items-center bg-gray-700 rounded-lg w-fit overflow-hidden">
                     <button onClick={() => decreaseQuantity(item.id)} className="px-3 py-1 bg-gray-600 hover:bg-gray-500 transition">
