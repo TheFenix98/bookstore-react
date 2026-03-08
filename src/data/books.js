@@ -50,7 +50,7 @@ export const libros = [
     autor: "George R.R. Martin",
     precio: 22000,
     categoria: "Fantasía",
-    imagen: "/img/juego-de-tronos.jpg",
+    imagen: "/img/Juego-de-tronos.jpg",
     año: 1996,
     paginas: 694,
     editorial: "Gigamesh",
