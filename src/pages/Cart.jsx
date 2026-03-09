@@ -22,16 +22,17 @@ const Cart = () => {
       ) : (
         <div className="space-y-4">
           {cartItems.map((item) => (
-            <div key={item.id} className="flex flex-col sm:flex-row justify-between gap-4 bg-gray-900 p-4 rounded-lg shadow-lg">
+            <div key={item.id} className="flex flex-row sm:flex-row justify-between gap-4 bg-gray-900 p-4 rounded-lg shadow-lg">
               <div className="flex flex-col sm:flex-row gap-4 flex-1">
                 <img
                   src={item.imagen}
                   alt={item.titulo}
-                  className="w-full sm:w-24 md:w-32 h-40 sm:h-32 md:h-40 object-cover rounded"
+                  className="w-full sm:w-24 md:w-32 h-40 sm:h-32 md:h-40 object-contain object-left rounded"
                 />
                 <div className="flex-1">
                   <h2 className="text-lg font-semibold">{item.titulo}</h2>
                   <p className="text-gray-400 mt-2">${item.precio.toLocaleString()}</p>
+                  <p className="text-gray-400 mt-1">{item.autor}</p>
                 </div>
               </div>
 
@@ -69,7 +70,7 @@ const Cart = () => {
             </div>
           ))}
           
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 bg-gray-800 p-4 rounded-lg shadow-lg mt-6">
+          <div className="flex  sm:flex-row  items-center gap-4 bg-gray-800 p-4 rounded-lg shadow-lg mt-6">
             <h2 className="text-xl md:text-2xl font-semibold">Total =</h2>
             <p className="text-blue-400 font-bold text-xl md:text-2xl">
               ${cartItems.reduce((total, item) => 
