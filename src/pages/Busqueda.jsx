@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { libros } from "../data/books"
-import { Link } from "react-router-dom"
+import Fuse from "fuse.js"
 import LibroCard  from "../components/LibroCard"
 import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
@@ -9,34 +9,42 @@ import { CartContext } from "../context/CartContext"
 const Busqueda = () => {
     const { query } = useParams()
     const { addToCart } = useContext(CartContext)
-    const resultados = libros.filter((libro) =>
-        libro.titulo.toLowerCase().includes(query.toLowerCase()) ||
-        libro.autor.toLowerCase().includes(query.toLowerCase())
-    )
+
+    const fuse = new Fuse(libros, {
+        keys: ["titulo", "autor"],
+        threshold: 0.4,
+    })
+
+    const resultados = fuse.search(query)
+    const librosEncontrados = resultados.map((resultado) => resultado.item)
+    const sugerencia = resultados.length > 0 ? resultados [0].item.titulo : null
+
 
   return (
-    <div>
-        <h1 className="text-3xl font-bold p-8 text-white">Resultados de búsqueda para: "{query}"</h1>
-        {resultados.length === 0 ? (
-            <p className="text-white p-8">No se encontraron libros que coincidan con tu búsqueda.</p>
-        ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
-                {resultados.map((libro) => (
-                    <LibroCard key={libro.id} libro={libro} >
-                        <button
-                        onClick={() => addToCart(libro)}
-                         className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                            Agregar al Carrito
-                        </button>
-                        <button className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
-                            Comprar Ahora
-                        </button>
-                    </LibroCard>
+    <div className="p-4 md:p-8 text-white min-h-screen">
+        {query && sugerencia && query.toLowerCase() !== sugerencia.toLowerCase() && (
+  <p className="text-gray-400 mb-4">
+    Resultados para "<strong>{query}</strong>".
+    Mostrando resultados para{" "}
+    <span className="font-bold text-white">{sugerencia}</span>
+  </p>
+)}
+        {librosEncontrados.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {librosEncontrados.map((libro) => (
+                    <LibroCard key={libro.id} libro={libro} addToCart={addToCart} />
                 ))}
             </div>
+        ) : (
+            <div className="flex flex-col  w-2/4 justify-center gap-4  rounded-lg "> 
+                <h6 className="text-gray-400">No pudimos encontrar libros para "<strong>{query}</strong>". Lo sentimos.</h6>
+                <p className="text-gray-400">Intenta con otro término de búsqueda o contacta con nosotros <a href="/contacto" className="text-blue-500 underline">aquí</a>.</p>
+            </div>
+
+            
+
         )}
     </div>
-  )
-}  
+)}
 
 export default Busqueda
