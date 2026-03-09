@@ -7,6 +7,8 @@ import Category from "./pages/Category"
 import Busqueda from "./pages/Busqueda"
 import { CartProvider } from "./context/CartContext"
 import { Toaster } from "sonner"
+import ScrollTop from "./components/ScrollTop"
+
 
 
 
@@ -24,6 +26,7 @@ function App() {
           <Route path="/busqueda/:query" element={<Busqueda />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
+        <ScrollTop />
       </div>
     </BrowserRouter>
     </CartProvider>

@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { GiShoppingCart } from "react-icons/gi";
 import { FaSearch } from "react-icons/fa";
-import { useState, useRef, useEffect } from "react";
+import Fuse from "fuse.js";
+import { libros } from "../data/books";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
-import { libros } from "../data/books";
 
 const Navbar = () => {
   const [dropdownDesktop, setDropdownDesktop] = useState(false);
@@ -16,6 +17,15 @@ const Navbar = () => {
   const [resultadosBusqueda, setResultadosBusqueda] = useState([]);
   const [mostrarResultados, setMostrarResultados] = useState(false);
   const navigate = useNavigate();
+  const fuse = useMemo(() =>{
+    return new Fuse(libros || [], {
+      keys: ["titulo", "autor"],
+      threshold: 0.4,
+    });
+  }, []);
+
+const [indiceSeleccionado, setIndiceSeleccionado] = useState(-1);
+
 
   useEffect(() => {
     const manejarClickFuera = (e) => {
@@ -63,9 +73,8 @@ const Navbar = () => {
               }
               setBusqueda(valor);
 
-              const filtrados = libros.filter((libro) =>
-                libro.titulo.toLowerCase().includes(valor.toLowerCase()),
-              );
+              const resultados = fuse.search(valor);
+              const filtrados = resultados.map((resultado) => resultado.item);
               setResultadosBusqueda(filtrados);
               setMostrarResultados(true);
             }}
@@ -73,13 +82,35 @@ const Navbar = () => {
               setTimeout(() => {
                 setMostrarResultados(false);}, 150);
             }}
+
+            onKeyDown={(e) => {
+              if (e.key === "ArrowDown") {
+                e.preventDefault();
+                setIndiceSeleccionado((prev) =>
+                  prev < resultadosBusqueda.length - 1 ? prev + 1 : prev
+                );
+              } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                setIndiceSeleccionado((prev) => (prev > 0 ? prev - 1 : -1));
+
+              } else if (e.key === "Enter") {
+                e.preventDefault();
+
+              } if (e.key === "Enter" && indiceSeleccionado >= 0) {
+                if (indiceSeleccionado >= 0 ) {
+                  const libroSeleccionado = resultadosBusqueda[indiceSeleccionado];
+                  navigate(`/book/${libroSeleccionado.id}`);
+                  setMostrarResultados(false);
+                }
+              
+            }}}
           />
           {mostrarResultados && resultadosBusqueda.length > 0 && (
             <div className=" absolute top-full left-0 right-0 bg-gray-700 rounded-lg shadow-lg mt-1 z-10">
-              {resultadosBusqueda.map((libro) => (
+              {resultadosBusqueda.map((libro, index) => (
                 <div
                   key={libro.id}
-                  className="p-2 hover:bg-gray-600 cursor-pointer"
+                  className={`p-2 hover:bg-gray-600 cursor-pointer ${indiceSeleccionado === index ? "bg-gray-600" : ""}`}
                   onClick={() => {
                     navigate(`/book/${libro.id}`);
                     setMostrarResultados(false);
