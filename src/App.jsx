@@ -5,9 +5,11 @@ import Cart from "./pages/Cart"
 import Navbar from "./components/Navbar"
 import Category from "./pages/Category"
 import Busqueda from "./pages/Busqueda"
+import Checkout from "./pages/Checkout"
 import { CartProvider } from "./context/CartContext"
 import { Toaster } from "sonner"
 import ScrollTop from "./components/ScrollTop"
+import Footer from "./components/Footer"
 
 
 
@@ -25,7 +27,9 @@ function App() {
           <Route path="/category/:id" element={<Category />} />
           <Route path="/busqueda/:query" element={<Busqueda />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
+        <Footer />
         <ScrollTop />
       </div>
     </BrowserRouter>

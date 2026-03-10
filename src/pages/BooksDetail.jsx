@@ -34,10 +34,13 @@ const BookDetail = () => {
           <p className="text-blue-400 font-bold text-lg md:text-xl mt-2">
             ${libro.precio.toLocaleString()}
           </p>
-          <div className="flex flex-col w-full md:w-1/2 ">
-            <button className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 text-sm md:text-base">
+          <div className="flex flex-col w-1/2 md:w-1/2 ">
+            <Link to="/checkout"
+            onClick={() => addToCart(libro, false)}
+            className="mt-4 px-4 py-2 bg-green-500 text-white text-center rounded hover:bg-green-600 text-sm md:text-base"
+            >
               Comprar Ahora
-            </button>
+            </Link>
             <button
               onClick={() => addToCart(libro)}
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm md:text-base"

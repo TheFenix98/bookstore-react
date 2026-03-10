@@ -27,24 +27,27 @@ const Navbar = () => {
 const [indiceSeleccionado, setIndiceSeleccionado] = useState(-1);
 
 
-  useEffect(() => {
-    const manejarClickFuera = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setDropdownDesktop(false);
-      }
-    };
+useEffect(() => {
+  const manejarClickFuera = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setDropdownDesktop(false);
+      setDropdownMobile(false);
+      setMenuAbierto(false);
+    }
+  };
 
-    document.addEventListener("mousedown", manejarClickFuera);
+  document.addEventListener("mousedown", manejarClickFuera);
 
-    return () => {
-      document.removeEventListener("mousedown", manejarClickFuera);
-    };
-  }, []);
+  return () => {
+    document.removeEventListener("mousedown", manejarClickFuera);
+  };
+}, []);
 
   const [menuAbierto, setMenuAbierto] = useState(false);
 
   return (
-    <nav className="w-full bg-gray-800 px-4 md:px-8 py-4 flex justify-between items-center sticky top-0 z-50">
+    <nav className="w-full bg-gray-800 px-4 md:px-8 py-4 flex justify-between items-center sticky top-0 z-50"
+    ref={dropdownRef}>
       <Link to="/" className="text-xl md:text-2xl font-bold text-blue-400">
         Alejandría
       </Link>
@@ -271,28 +274,28 @@ const [indiceSeleccionado, setIndiceSeleccionado] = useState(-1);
               <ul className="pl-4 space-y-2">
                 <Link
                   to="/category/Fantasía"
-                  className="block hover:text-blue-400 py-2 text-sm"
+                  className="block hover:text-blue-400 hover:bg-gray-700 py-2 text-sm"
                   onClick={() => setMenuAbierto(false)}
                 >
                   Fantasía
                 </Link>
                 <Link
                   to="/category/Ciencia Ficción"
-                  className="block hover:text-blue-400 py-2 text-sm"
+                  className="block hover:text-blue-400 hover:bg-gray-700 py-2 text-sm"
                   onClick={() => setMenuAbierto(false)}
                 >
                   Ciencia Ficción
                 </Link>
                 <Link
                   to="/category/Distópico"
-                  className="block hover:text-blue-400 py-2 text-sm"
+                  className="block hover:text-blue-400 hover:bg-gray-700  py-2 text-sm"
                   onClick={() => setMenuAbierto(false)}
                 >
                   Distópico
                 </Link>
                 <Link
                   to="/category/Clásicos"
-                  className="block hover:text-blue-400 py-2 text-sm"
+                  className="block hover:text-blue-400 hover:bg-gray-700 py-2 text-sm"
                   onClick={() => setMenuAbierto(false)}
                 >
                   Clásicos

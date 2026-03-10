@@ -11,35 +11,40 @@ export const CartProvider = ({ children }) => {
     return carritoGuardado ? JSON.parse(carritoGuardado) : [];
   });
 
-  const addToCart = (item) => {
-    setCartItems((prevItems) => {
-      const itemExistente = prevItems.find(
-        (cartItem) => cartItem.id === item.id,
+const addToCart = (item, mostrarToast = true) => {
+  const itemExistente = cartItems.find(
+    (cartItem) => cartItem.id === item.id
+  );
+
+  if (itemExistente && itemExistente.quantity >= item.stock) {
+    if (mostrarToast) {
+      toast.error(`No hay más stock disponible para ${item.titulo}.`, {
+        icon: <MdErrorOutline />,
+      });
+    }
+    return;
+  }
+
+  setCartItems((prevItems) => {
+    const existente = prevItems.find(
+      (cartItem) => cartItem.id === item.id
+    );
+
+    if (existente) {
+      return prevItems.map((cartItem) =>
+        cartItem.id === item.id
+          ? { ...cartItem, quantity: cartItem.quantity + 1 }
+          : cartItem
       );
+    }
 
-      // Si ya existe en el carrito
-      if (itemExistente) {
-        if (itemExistente.quantity >= item.stock) {
-          toast.error(`No hay más stock disponible para ${item.titulo}.`, {
-            icon: <MdErrorOutline />,
-          });
-          return prevItems;
-        }
+    return [...prevItems, { ...item, quantity: 1 }];
+  });
 
-        toast.success(`${item.titulo} agregado al carrito`);
-
-        return prevItems.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem,
-        );
-      }
-
-      // Si no existe todavía
-      toast.success(`${item.titulo} agregado al carrito`);
-      return [...prevItems, { ...item, quantity: 1 }];
-    });
-  };
+  if (mostrarToast) {
+    toast.success(`${item.titulo} agregado al carrito`);
+  }
+};
 
   const increaseQuantity = (id) => {
     const item = cartItems.find((item) => item.id === id);
