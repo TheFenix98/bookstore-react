@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cartItems, removeFromCart, increaseQuantity, decreaseQuantity, clearCart } = useContext(CartContext);
@@ -73,15 +74,19 @@ const Cart = () => {
           <div className="flex  sm:flex-row  items-center gap-4 bg-gray-800 p-4 rounded-lg shadow-lg mt-6">
             <h2 className="text-xl md:text-2xl font-semibold">Total =</h2>
             <p className="text-blue-400 font-bold text-xl md:text-2xl">
-              ${cartItems.reduce((total, item) => 
-                total + item.precio * (item.quantity || 1), 0).toLocaleString()}
+              ${cartItems.reduce(
+                    (total, item) =>
+                      total + item.precio * (item.quantity || 1),
+                    0
+                  )
+                  .toLocaleString()}
             </p>
           </div>
 
           <div className="flex justify-center mt-6">
-            <button className="w-full sm:w-auto px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+            <Link to="/checkout" className="w-full text-center sm:w-auto px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
               Finalizar Compra
-            </button>
+            </Link>
           </div>
         </div>
       )}
