@@ -20,7 +20,7 @@ function App() {
       <BrowserRouter>
         <Toaster position="bottom-right" richColors duration={3000} />
 
-        <div className="min-h-screen flex flex-col bg-gray-900 text-white">
+        <div className="min-h-screen flex flex-col bg-gray-900 text-white overflow-x-hidden">
           <Navbar />
 
           <main className="flex-1">

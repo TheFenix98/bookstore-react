@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="container mx-auto text-center">
             <p className="text-sm">&copy; 2026 Alejandría. Todos los derechos reservados.</p>
             <p className="text-sm mt-2">
-                <Link to="/contact" className="hover:text-blue-400">Contáctanos</Link> | 
+                <Link to="/contacto" className="hover:text-blue-400">Contáctanos</Link> | 
                 <Link to="/terms" className="hover:text-blue-400"> Términos de Servicio</Link> | 
                 <Link to="/privacy" className="hover:text-blue-400"> Política de Privacidad</Link>
             </p>
