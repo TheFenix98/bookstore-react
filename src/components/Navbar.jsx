@@ -52,7 +52,7 @@ useEffect(() => {
         Alejandría
       </Link>
 
-      <div className="flex items-center  mx-4 md:max-w-md">
+      <div className="flex items-center  mx-4 flex-1 md:max-w-md">
         <form
           className="relative flex items-center"
           onSubmit={(e) => {
