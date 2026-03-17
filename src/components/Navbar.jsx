@@ -204,6 +204,12 @@ useEffect(() => {
           </div>
         </div>
 
+        <div>
+          <Link to="/contacto" className="hover:text-blue-400 transition text-sm">
+            Contacto
+          </Link>
+        </div>
+
         {/* Cart */}
         <div className="relative">
           {cartItems.length > 0 && (
@@ -302,6 +308,10 @@ useEffect(() => {
                 </Link>
               </ul>
             )}
+            <Link to="/contacto" className="w-full text-left flex items-center justify-between hover:text-blue-400 font-medium py-2" onClick={() => setMenuAbierto(false)}>
+              Contacto
+            </Link>
+
           </div>
         </div>
       </div>

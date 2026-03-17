@@ -10,6 +10,9 @@ import { CartProvider } from "./context/CartContext"
 import { Toaster } from "sonner"
 import ScrollTop from "./components/ScrollTop"
 import Footer from "./components/Footer"
+import TerminosyCon from "./pages/TerminosyCon"
+import Contacto from "./pages/Contacto"
+import WppFlotante from "./components/WppFlotante"
 
 
 
@@ -31,10 +34,13 @@ function App() {
               <Route path="/busqueda/:query" element={<Busqueda />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/terms" element={<TerminosyCon />} />
+              <Route path="/contacto" element={<Contacto />} />
             </Routes>
           </main>
 
           <ScrollTop />
+          <WppFlotante />
           <Footer />
         </div>
       </BrowserRouter>
