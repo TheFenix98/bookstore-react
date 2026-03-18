@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import FadeInOnScroll from "../components/FadeInOnScroll";
 
 const Cart = () => {
   const { cartItems, removeFromCart, increaseQuantity, decreaseQuantity, clearCart } = useContext(CartContext);
@@ -23,11 +24,12 @@ const Cart = () => {
       ) : (
         <div className="space-y-4">
           {cartItems.map((item) => (
-            <div key={item.id} className="flex flex-row sm:flex-row justify-between gap-4 bg-gray-900 p-4 rounded-lg shadow-lg">
-              <div className="flex flex-col sm:flex-row gap-4 flex-1">
-                <img
-                  src={item.imagen}
-                  alt={item.titulo}
+            <FadeInOnScroll key={item.id}>
+              <div className="flex flex-row sm:flex-row justify-between gap-4 bg-gray-800 p-4 rounded-lg shadow-xl">
+                <div className="flex flex-col sm:flex-row gap-4 flex-1">
+                  <img
+                    src={item.imagen}
+                    alt={item.titulo}
                   className="w-full sm:w-24 md:w-32 h-40 sm:h-32 md:h-40 object-contain object-left rounded"
                 />
                 <div className="flex-1">
@@ -69,25 +71,30 @@ const Cart = () => {
                 </button>
               </div>
             </div>
-          ))}
+          </FadeInOnScroll>
+        ))}
           
-          <div className="flex  sm:flex-row  items-center gap-4 bg-gray-800 p-4 rounded-lg shadow-lg mt-6">
-            <h2 className="text-xl md:text-2xl font-semibold">Total =</h2>
-            <p className="text-blue-400 font-bold text-xl md:text-2xl">
-              ${cartItems.reduce(
-                    (total, item) =>
-                      total + item.precio * (item.quantity || 1),
+          <FadeInOnScroll>
+            <div className="flex  sm:flex-row  items-center gap-4 bg-gray-800 p-4 rounded-lg shadow-lg mt-6">
+              <h2 className="text-xl md:text-2xl font-semibold">Total =</h2>
+              <p className="text-blue-400 font-bold text-xl md:text-2xl">
+                ${cartItems.reduce(
+                      (total, item) =>
+                        total + item.precio * (item.quantity || 1),
                     0
                   )
                   .toLocaleString()}
             </p>
           </div>
+          </FadeInOnScroll>
 
-          <div className="flex justify-center mt-6">
-            <Link to="/checkout" className="w-full text-center sm:w-auto px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
-              Finalizar Compra
-            </Link>
-          </div>
+          <FadeInOnScroll>
+            <div className="flex justify-center mt-6">
+              <Link to="/checkout" className="w-full text-center sm:w-auto px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+                Finalizar Compra
+              </Link>
+            </div>
+          </FadeInOnScroll>
         </div>
       )}
     </div>

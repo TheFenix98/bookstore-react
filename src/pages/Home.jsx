@@ -1,5 +1,6 @@
 import { libros } from "../data/books"
 import LibroCard from "../components/LibroCard"
+import FadeInOnScroll from "../components/FadeInOnScroll"
 
 const Home = () => {
   return (
@@ -10,7 +11,9 @@ const Home = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
         {libros.map((libro) => (
-          <LibroCard key={libro.id} libro={libro} />
+          <FadeInOnScroll key={libro.id}>
+            <LibroCard libro={libro} />
+          </FadeInOnScroll>
         ))}
       </div>
     </div>

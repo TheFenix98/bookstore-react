@@ -22,7 +22,7 @@ const BookDetail = () => {
       <h1 className="text-2xl md:text-3xl font-bold">Detalle del libro</h1>
       <div className="flex flex-col md:flex-row mt-8 gap-6 bg-gray-800 p-4 md:p-6 rounded-lg shadow-lg">
         <div className="w-full md:w-1/3 items-center flex flex-col">
-          <h2 className="text-xl md:text-2xl font-semibold mt-4">
+          <h2 className="text-xl md:text-2xl font-semibold mt-4 mb-2 text-center">
             {libro.titulo}
           </h2>
           <img

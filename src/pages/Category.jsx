@@ -3,6 +3,7 @@ import { libros } from "../data/books"
 import { useContext } from "react"
 import { CartContext } from "../context/CartContext"
 import LibroCard from "../components/LibroCard"
+import FadeInOnScroll from "../components/FadeInOnScroll"
 
 const Category = () => {
   const { id } = useParams()
@@ -22,15 +23,17 @@ const Category = () => {
         <h1 className="text-3xl font-bold p-8 text-white">Nuestros libros en la categoría: {id}</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
           {librosCategoria.map((libro) => (
-            <LibroCard key={libro.id} libro={libro} >
-              <button onClick={() => addToCart(libro)} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                Agregar al Carrito
-              </button>
-              <button className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
-                Comprar Ahora
+            <FadeInOnScroll key={libro.id}>
+              <LibroCard libro={libro} >
+                <button onClick={() => addToCart(libro)} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                  Agregar al Carrito
+                </button>
+                <button className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                  Comprar Ahora
               </button>
             </LibroCard>
-          ))}
+          </FadeInOnScroll>
+        ))}
         </div>
     </div>
   )
