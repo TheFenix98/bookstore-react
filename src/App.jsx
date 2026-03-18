@@ -13,7 +13,7 @@ import Footer from "./components/Footer"
 import TerminosyCon from "./pages/TerminosyCon"
 import Contacto from "./pages/Contacto"
 import WppFlotante from "./components/WppFlotante"
-import FadeInOnScroll from "./components/FadeInOnScroll"
+import ButtonToTheTop from "./components/ButtonToTheTop"
 
 
 
@@ -42,6 +42,7 @@ function App() {
 
           <ScrollTop />
           <WppFlotante />
+          <ButtonToTheTop />
           <Footer />
         </div>
       </BrowserRouter>
