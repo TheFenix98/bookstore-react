@@ -58,7 +58,7 @@ const Contacto = () => {
   };
 
   return (
-    <div className="p-8 text-white flex flex-col md:grid md:grid-cols-2 gap-12">
+    <div className="justify-center p-8 text-white flex flex-col md:grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
         <div className="w-full">
         <h1 className="text-3xl font-bold mb-4">Contacto</h1>
         <h2 className="text-2xl font-semibold mb-4">Formulario</h2>
