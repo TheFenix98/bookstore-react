@@ -49,7 +49,7 @@ useEffect(() => {
     <nav className="w-full bg-gray-800 px-4 md:px-8 py-4 flex justify-between items-center sticky top-0 z-50"
     ref={dropdownRef}>
       <Link to="/" className="text-xl md:text-2xl font-bold text-blue-400">
-        Alejandría
+        <img src="/img/logo-alejandria.png" alt="Logo Alejandría" className="w-12 h-auto" />
       </Link>
 
       <div className="flex items-center justify-center mx-4 flex-1 md:max-w-md">
